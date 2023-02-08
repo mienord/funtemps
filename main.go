@@ -60,7 +60,7 @@ func main() {
 		os.Exit(1)
 	}
 	//sjekker om -t er brukt med funfacts, noe den skal! Så hvis det ikke skjer så slutter den også programmet
-	if funfacts != "" && temperature == "" {
+	if funfacts != "" && tempSkala == "" {
 		fmt.Println("Error: -funfacts kan kun brukes med -t")
 		os.Exit(1)
 	}
