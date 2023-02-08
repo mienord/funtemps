@@ -7,12 +7,12 @@ import (
 )
 
 // Definerer flag-variablene i hoved-"scope"
-fahr float64
-celsius float64
-kelvin float64
-out string
-funfacts string
-tempSkala string
+var fahr float64
+var celsius float64
+var kelvin float64
+var out string
+var funfacts string
+var tempSkala string
 
 
 // Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
@@ -75,8 +75,6 @@ func main() {
 	} else if funfacts != "" {
 		// Viser funfacts om den verdien man har valgt 
 	}
-}
-
 
 
 if out == "F" { 
@@ -122,6 +120,7 @@ else if kelvin != 0 {
 	fmt.Println("Invalid temperature value")
 }
 
+}
 
 
 	/**
