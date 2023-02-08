@@ -6,9 +6,13 @@ import (
 )
 
 // Definerer flag-variablene i hoved-"scope"
-var fahr float64
-var out string
-var funfacts string
+fahr float64
+celsius float64
+kelvin float64
+out string
+funfacts string
+tempSkala string
+
 
 // Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
 // er initialisert.
@@ -23,9 +27,11 @@ func init() {
 
 	// Definerer og initialiserer flagg-variablene
 	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
-	// Du må selv definere flag-variablene for "C" og "K"
+	flag.Float64Var(&celsius, "C", 0.0, "temperature in Celsius")
+	flag.Float64Var(&kelvin, "K", 0.0, "temperature in Kelvin")
 	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
 	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
+	flag.StringVar(&tempSkala, "t", "C", "the temperature scale to use when showing funfacts")
 	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
 	// hvilken temperaturskala skal brukes når funfacts skal vises
 
@@ -34,6 +40,43 @@ func init() {
 func main() {
 
 	flag.Parse()
+//denne koden sjekker om F, C og K blir brukt samtidig, fordi det er ikke lov
+	if (fahr != 0 && celsius != 0) || (fahr != 0 && kelvin != 0) || (celsius != 0 && kelvin != 0) {
+		fmt.Println("Error: Kun en av: -F, -C, og -K kan brukes samtidig")
+		//hvis de blir brukt samtidig slutter den programmet med denne koden
+		os.Exit(1)
+	}
+	//sjekker om F, C eller K blir brukt med funfacts, os.Exit(1) - fordi det er ikke lov
+	if fahr != 0 && funfacts != "" {
+		fmt.Println("Error: -F kan ikke brukes med -funfacts")
+		os.Exit(1)
+	}
+	if celsius != 0 && funfacts != "" {
+		fmt.Println("Error: -C kan ikke brukes med -funfacts")
+		os.Exit(1)
+	}
+	if kelvin != 0 && funfacts != "" {
+		fmt.Println("Error: -K kan ikke brukes med -funfacts")
+		os.Exit(1)
+	}
+	//sjekker om -t er brukt med funfacts, noe den skal! Så hvis det ikke skjer så slutter den også programmet
+	if funfacts != "" && temperature == "" {
+		fmt.Println("Error: -funfacts kan kun brukes med -t")
+		os.Exit(1)
+	}
+//til slutt, hvis alt er greit og betingelsene er møtt vil den se hvilken temp som har verdi og gjøre en av fire ting
+	if fahr != 0 {
+		// konverterer fra farhenheit til ønskelig temp 
+	} else if celsius != 0 {
+		// konverterer fra celsius til ønskelig temp 
+	} else if kelvin != 0 {
+		// konverterer fra kelvin til ønskelig temp 
+	} else if funfacts != "" {
+		// Viser funfacts om den verdien man har valgt 
+	}
+}
+
+
 
 	/**
 	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
