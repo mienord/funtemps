@@ -177,3 +177,18 @@ func isFlagPassed(name string) bool {
 	return found
 }
 */
+
+
+
+
+func conv() {
+	var temp float64
+	fmt.Print("Enter the temperature in Celsius: ")
+	fmt.Scanf("%f", &temp)
+
+	kelvin := CelsiusToKelvin(temp)
+	fahrenheit := CelsiusToFarhenheit(temp)
+
+	fmt.Println("Temperature in Kelvin: ", kelvin)
+	fmt.Println("Temperature in Farhenheit: ", fahrenheit)
+}

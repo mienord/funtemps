@@ -86,7 +86,7 @@ func TestCelsiusToFarhenheit(t *testing.T) {
 	}
 
 	for _, tc := range tests {
-		got := CelsiusToFahrenheit(tc.input)
+		got := CelsiusToFarhenheit(tc.input)
 		if !reflect.DeepEqual(tc.want, got) {
 			t.Errorf("expected: %v, got: %v", tc.want, got)
 		}

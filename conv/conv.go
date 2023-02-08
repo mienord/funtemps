@@ -40,16 +40,3 @@ func KelvinToFarhenheit(value float64) float64 {
 }
 
 
-// ha dette i main.go - tror jeg
-
-func main() {
-	var temp float64
-	fmt.Print("Enter the temperature in Celsius: ")
-	fmt.Scanf("%f", &temp)
-
-	kelvin := CelsiusToKelvin(temp)
-	fahrenheit := CelsiusToFarhenheit(temp)
-
-	fmt.Println("Temperature in Kelvin: ", kelvin)
-	fmt.Println("Temperature in Farhenheit: ", fahrenheit)
-}
