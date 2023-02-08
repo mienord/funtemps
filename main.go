@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
 )
 
 // Definerer flag-variablene i hoved-"scope"
@@ -74,6 +75,51 @@ func main() {
 	} else if funfacts != "" {
 		// Viser funfacts om den verdien man har valgt 
 	}
+}
+
+
+
+if out == "F" { 
+	// Hvis verdien av variabelen "out" er lik "F", utfør følgende operasjoner:
+// Konverter temperaturen fra Celsius til Fahrenheit
+	fahr = (celsius * 9 / 5) + 32
+	// Print den konverterte temp
+	fmt.Printf("%.2f°C is %.2f°F\n", celsius, fahr)
+
+} else if out == "K" {
+	// samme^ hvis verdien til out er K konverterer den temp fra celsius til kelvin 
+	kelvin = celsius + 273.15
+	// Printer
+	fmt.Printf("%.2f°C is %.2fK\n", celsius, kelvin)
+
+} else {
+	// hvis verdien til out ikke er F eller K - printer den verdien i celsius
+	fmt.Printf("%.2f°C\n", celsius)
+}
+
+// sjekker at veriden til kelvin ikke er lik 0 
+else if kelvin != 0 {
+	if out == "F" {
+		// hvis out er lik F konverterer den temp fra kelvin til celsius 
+		celsius = kelvin - 273.15
+		// så konverterer den temp fra celsius til farhenheit 
+		fahr = (celsius * 9 / 5) + 32
+		// printer den konverterte temp
+		fmt.Printf("%.2fK is %.2f°F\n", kelvin, fahr)
+
+	} else if out == "C" {
+		// hvis out er lik C konverterer den temp fra kelvin til celsius 
+		celsius = kelvin - 273.15
+		// Printer den konverterte temp
+		fmt.Printf("%.2fK is %.2f°C\n", kelvin, celsius)
+
+	} else {
+		// hvis out ikke er lik F eller C så printer den temp i kelvin
+		fmt.Printf("%.2fK\n", kelvin)
+	}
+} else {
+	// hvis både `fahr` og `kelvin` er 0 printer den en error mld
+	fmt.Println("Invalid temperature value")
 }
 
 
