@@ -28,11 +28,11 @@ func init() {
 
 	// Definerer og initialiserer flagg-variablene
 	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
-	flag.Float64Var(&celsius, "C", 0.0, "temperature in Celsius")
-	flag.Float64Var(&kelvin, "K", 0.0, "temperature in Kelvin")
+	flag.Float64Var(&celsius, "C", 0.0, "temperatur i Celsius")
+	flag.Float64Var(&kelvin, "K", 0.0, "temperatur i Kelvin")
 	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
 	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
-	flag.StringVar(&tempSkala, "t", "C", "the temperature scale to use when showing funfacts")
+	flag.StringVar(&tempSkala, "t", "C", "temperatur skalaen til å bruke når man har funfacts")
 	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
 	// hvilken temperaturskala skal brukes når funfacts skal vises
 
