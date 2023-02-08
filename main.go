@@ -100,7 +100,7 @@ func main() {
 	    beskrivelsene av flagg-variablene, som angitt i parameter fire til
 	    funksjonene Float64Var og StringVar
 	*/
-
+/*
 	// Her er noen eksempler du kan bruke i den manuelle testingen
 	fmt.Println(fahr, out, funfacts)
 
@@ -116,7 +116,7 @@ func main() {
 		fmt.Println("0°F er -17.78°C")
 	}
 
-}
+
 
 // Funksjonen sjekker om flagget er spesifisert på kommandolinje
 // Du trenger ikke å bruke den, men den kan hjelpe med logikken
@@ -129,3 +129,4 @@ func isFlagPassed(name string) bool {
 	})
 	return found
 }
+*/
