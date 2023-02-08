@@ -75,8 +75,10 @@ func main() {
 	} else if funfacts != "" {
 		// Viser funfacts om den verdien man har valgt 
 	}
+}
 
 
+func temp() {
 if out == "F" { 
 	// Hvis verdien av variabelen "out" er lik "F", utfør følgende operasjoner:
 // Konverter temperaturen fra Celsius til Fahrenheit
@@ -94,10 +96,9 @@ if out == "F" {
 	// hvis verdien til out ikke er F eller K - printer den verdien i celsius
 	fmt.Printf("%.2f°C\n", celsius)
 }
-
 // sjekker at veriden til kelvin ikke er lik 0 
-else if kelvin != 0 {
-	if out == "F" {
+if kelvin != 0 {
+	} else if out == "F" {
 		// hvis out er lik F konverterer den temp fra kelvin til celsius 
 		celsius = kelvin - 273.15
 		// så konverterer den temp fra celsius til farhenheit 
@@ -115,12 +116,13 @@ else if kelvin != 0 {
 		// hvis out ikke er lik F eller C så printer den temp i kelvin
 		fmt.Printf("%.2fK\n", kelvin)
 	}
-} else {
 	// hvis både `fahr` og `kelvin` er 0 printer den en error mld
 	fmt.Println("Invalid temperature value")
 }
 
-}
+
+
+
 
 
 	/**
