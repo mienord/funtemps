@@ -1,1 +1,3 @@
-module example.com/mod
+module github.com/mienord/funtemps
+
+go 1.19

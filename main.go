@@ -3,192 +3,151 @@ package main
 import (
 	"flag"
 	"fmt"
-	"os"
+	"github.com/mienord/funtemps/funfacts"
 )
 
-// Definerer flag-variablene i hoved-"scope"
-var fahr float64
-var celsius float64
-var kelvin float64
-var out string
-var funfacts string
-var tempSkala string
+var (
+	fahr    float64
+	celsius float64
+	kelvin  float64
+	out     string
+	funfact string
+	tempSkala string
+)
 
-
-// Bruker init (som anbefalt i dokumentasjonen) for å sikre at flagvariablene
-// er initialisert.
 func init() {
-
-	/*
-	   Her er eksempler på hvordan man implementerer parsing av flagg.
-	   For eksempel, kommando
-	       funtemps -F 0 -out C
-	   skal returnere output: 0°F er -17.78°C
-	*/
-
-	// Definerer og initialiserer flagg-variablene
-	flag.Float64Var(&fahr, "F", 0.0, "temperatur i grader fahrenheit")
-	flag.Float64Var(&celsius, "C", 0.0, "temperatur i Celsius")
-	flag.Float64Var(&kelvin, "K", 0.0, "temperatur i Kelvin")
-	flag.StringVar(&out, "out", "C", "beregne temperatur i C - celsius, F - farhenheit, K- Kelvin")
-	flag.StringVar(&funfacts, "funfacts", "sun", "\"fun-facts\" om sun - Solen, luna - Månen og terra - Jorden")
-	flag.StringVar(&tempSkala, "t", "C", "temperatur skalaen til å bruke når man har funfacts")
-	// Du må selv definere flag-variabelen for -t flagget, som bestemmer
-	// hvilken temperaturskala skal brukes når funfacts skal vises
-
+	flag.Float64Var(&fahr, "F", 0.0, "temperature in Fahrenheit")
+	flag.Float64Var(&celsius, "C", 0.0, "temperature in Celsius")
+	flag.Float64Var(&kelvin, "K", 0.0, "temperature in Kelvin")
+	flag.StringVar(&out, "out", "C", "output temperature in C (Celsius), F (Fahrenheit), K (Kelvin)")
+	flag.StringVar(&funfact, "funfact", "sun", "\"fun-facts\" about sun, moon and earth")
+	flag.StringVar(&tempSkala, "t", "C", "temperature scale to use when providing funfact")
 }
 
 func main() {
-
 	flag.Parse()
-//denne koden sjekker om F, C og K blir brukt samtidig, fordi det er ikke lov
-	if (fahr != 0 && celsius != 0) || (fahr != 0 && kelvin != 0) || (celsius != 0 && kelvin != 0) {
-		fmt.Println("Error: Kun en av: -F, -C, og -K kan brukes samtidig")
-		//hvis de blir brukt samtidig slutter den programmet med denne koden
-		os.Exit(1)
-	}
-	//sjekker om F, C eller K blir brukt med funfacts, os.Exit(1) - fordi det er ikke lov
-	if fahr != 0 && funfacts != "" {
-		fmt.Println("Error: -F kan ikke brukes med -funfacts")
-		os.Exit(1)
-	}
-	if celsius != 0 && funfacts != "" {
-		fmt.Println("Error: -C kan ikke brukes med -funfacts")
-		os.Exit(1)
-	}
-	if kelvin != 0 && funfacts != "" {
-		fmt.Println("Error: -K kan ikke brukes med -funfacts")
-		os.Exit(1)
-	}
-	//sjekker om -t er brukt med funfacts, noe den skal! Så hvis det ikke skjer så slutter den også programmet
-	if funfacts != "" && tempSkala == "" {
-		fmt.Println("Error: -funfacts kan kun brukes med -t")
-		os.Exit(1)
-	}
-//til slutt, hvis alt er greit og betingelsene er møtt vil den se hvilken temp som har verdi og gjøre en av fire ting
-	if fahr != 0 {
-		// konverterer fra farhenheit til ønskelig temp 
-	} else if celsius != 0 {
-		// konverterer fra celsius til ønskelig temp 
-	} else if kelvin != 0 {
-		// konverterer fra kelvin til ønskelig temp 
-	} else if funfacts != "" {
-		// Viser funfacts om den verdien man har valgt 
-	}
-}
 
-
-func temp() {
-if out == "F" { 
-	// Hvis verdien av variabelen "out" er lik "F", utfør følgende operasjoner:
-// Konverter temperaturen fra Celsius til Fahrenheit
-	fahr = (celsius * 9 / 5) + 32
-	// Print den konverterte temp
-	fmt.Printf("%.2f°C is %.2f°F\n", celsius, fahr)
-
-} else if out == "K" {
-	// samme^ hvis verdien til out er K konverterer den temp fra celsius til kelvin 
-	kelvin = celsius + 273.15
-	// Printer
-	fmt.Printf("%.2f°C is %.2fK\n", celsius, kelvin)
-
-} else {
-	// hvis verdien til out ikke er F eller K - printer den verdien i celsius
-	fmt.Printf("%.2f°C\n", celsius)
-}
-// sjekker at veriden til kelvin ikke er lik 0 
-if kelvin != 0 {
-	} else if out == "F" {
-		// hvis out er lik F konverterer den temp fra kelvin til celsius 
-		celsius = kelvin - 273.15
-		// så konverterer den temp fra celsius til farhenheit 
-		fahr = (celsius * 9 / 5) + 32
-		// printer den konverterte temp
-		fmt.Printf("%.2fK is %.2f°F\n", kelvin, fahr)
-
-	} else if out == "C" {
-		// hvis out er lik C konverterer den temp fra kelvin til celsius 
-		celsius = kelvin - 273.15
-		// Printer den konverterte temp
-		fmt.Printf("%.2fK is %.2f°C\n", kelvin, celsius)
-
-	} else {
-		// hvis out ikke er lik F eller C så printer den temp i kelvin
-		fmt.Printf("%.2fK\n", kelvin)
-	}
-	// hvis både `fahr` og `kelvin` er 0 printer den en error mld
-	fmt.Println("Invalid temperature value")
-}
-
-
-
-
-
-
-	/**
-	    Her må logikken for flaggene og kall til funksjoner fra conv og funfacts
-	    pakkene implementeres.
-
-	    Det er anbefalt å sette opp en tabell med alle mulige kombinasjoner
-	    av flagg. flag-pakken har funksjoner som man kan bruke for å teste
-	    hvor mange flagg og argumenter er spesifisert på kommandolinje.
-
-	        fmt.Println("len(flag.Args())", len(flag.Args()))
-			    fmt.Println("flag.NFlag()", flag.NFlag())
-
-	    Enkelte kombinasjoner skal ikke være gyldige og da må kontrollstrukturer
-	    brukes for å utelukke ugyldige kombinasjoner:
-	    -F, -C, -K kan ikke brukes samtidig
-	    disse tre kan brukes med -out, men ikke med -funfacts
-	    -funfacts kan brukes kun med -t
-	    ...
-	    Jobb deg gjennom alle tilfellene. Vær obs på at det er en del sjekk
-	    implementert i flag-pakken og at den vil skrive ut "Usage" med
-	    beskrivelsene av flagg-variablene, som angitt i parameter fire til
-	    funksjonene Float64Var og StringVar
-	*/
-/*
-	// Her er noen eksempler du kan bruke i den manuelle testingen
-	fmt.Println(fahr, out, funfacts)
-
-	fmt.Println("len(flag.Args())", len(flag.Args()))
-	fmt.Println("flag.NFlag()", flag.NFlag())
-
-	fmt.Println(isFlagPassed("out"))
-
-	// Eksempel på enkel logikk
-	if out == "C" && isFlagPassed("F") {
-		// Kalle opp funksjonen FahrenheitToCelsius(fahr), som da
-		// skal returnere °C
-		fmt.Println("0°F er -17.78°C")
+	// Check if multiple temperature flags are not used simultaneously
+	if (fahr != 0 && (celsius != 0 || kelvin != 0)) ||
+		(celsius != 0 && (fahr != 0 || kelvin != 0)) ||
+		(kelvin != 0 && (fahr != 0 || celsius != 0)) {
+		fmt.Println("Error: Cannot use multiple temperature flags together.")
+		return
 	}
 
+	// Check if temperature flags and funfact flag are used together
+	if (fahr != 0 || celsius != 0 || kelvin != 0) && funfact != "sun" {
+		fmt.Println("Error: Cannot use temperature flags with funfact flag.")
+		return
+	}
 
+	// Check if funfact flag is used with temperature scale flag
+	if funfact != "sun" && tempSkala == "C" {
+		fmt.Println("Error: Must use temperature scale flag with funfact flag.")
+		return
+	}
 
-// Funksjonen sjekker om flagget er spesifisert på kommandolinje
-// Du trenger ikke å bruke den, men den kan hjelpe med logikken
-func isFlagPassed(name string) bool {
-	found := false
-	flag.Visit(func(f *flag.Flag) {
-		if f.Name == name {
-			found = true
+	// Check the out flag and convert temperature
+	switch out {
+	case "C":
+		if fahr != 0 {
+			celsius = (fahr - 32) * 5 / 9
+			fmt.Println(celsius, "°C")
+		} else if kelvin != 0 {
+			celsius = kelvin - 273.15
+			fmt.Println(celsius, "°C")
+		} else {
+			fmt.Println(celsius, "°C")
 		}
-	})
-	return found
-}
-*/
-
-
-
-
-func conv() {
-	var temp float64
-	fmt.Print("Enter the temperature in Celsius: ")
-	fmt.Scanf("%f", &temp)
-
-	kelvin := CelsiusToKelvin(temp)
-	fahrenheit := CelsiusToFarhenheit(temp)
-
-	fmt.Println("Temperature in Kelvin: ", kelvin)
-	fmt.Println("Temperature in Farhenheit: ", fahrenheit)
-}
+	case "F":
+		if celsius != 0 {
+			fahr = (celsius * 9 / 5) + 32
+			fmt.Println(fahr, "°F")
+		} else if kelvin != 0 {
+			fahr = (kelvin*9/5 - 459.67)
+			fmt.Println(fahr, "°F")
+		} else {
+			fmt.Println(fahr, "°F")
+		}
+	case "K":
+		if fahr != 0 {
+			kelvin = (fahr + 459.67) * 5 / 9
+			fmt.Println(kelvin, "K")
+		} else if celsius != 0 {
+			kelvin = celsius + 273.15
+			fmt.Println(kelvin, "K")
+		} else {
+			fmt.Println(kelvin, "K")
+		}
+	default:
+		fmt.Println("Invalid temperature scale: Enter a valid temperature unit (C, F or K)")
+	}
+		
+			
+				// Tests that makes sure these combinations are fulfilled:
+				// -F, -C, -K can not be used similtaniously
+				if (fahr != 0) && (celsius != 0 || kelvin != 0) {
+					fmt.Println("Error: Cannot use -F flag with -C or -K flags.")
+					return
+				}
+				if (celsius != 0) && (fahr != 0 || kelvin != 0) {
+					fmt.Println("Error: Cannot use -C flag with -F or -K flags.")
+					return
+				}
+				if (kelvin != 0) && (fahr != 0 || celsius != 0) {
+					fmt.Println("Error: Cannot use -K flag with -F or -C flags.")
+					return
+				}
+			
+				// -F, -C, -K can be used with -out but not with -funfacts
+				if (fahr != 0 || celsius != 0 || kelvin != 0) && funfacts != "sun" {
+					fmt.Println("Error: Cannot use -F, -C, or -K flags with -funfacts flag.")
+					return
+				}
+			
+				// funfacts can only be used with -t
+				if (funfacts != "sun") && tempSkala == "C" {
+					fmt.Println("Error: Must use -t flag with -funfacts flag.")
+					return
+				}
+			
+				fmt.Println("len(flag.Args())", len(flag.Args()))
+				fmt.Println("flag.NFlag()", flag.NFlag())
+			
+				// Check the out flag and convert temperature
+				switch out {
+				case "C":
+					if fahr != 0 {
+						celsius = (fahr - 32) * 5 / 9
+						fmt.Println(celsius, "°C")
+					} else if kelvin != 0 {
+						celsius = kelvin - 273.15
+						fmt.Println(celsius, "°C")
+					} else {
+						fmt.Println(celsius, "°C")
+					}
+				case "F":
+					if celsius != 0 {
+						fahr = (celsius * 9 / 5) + 32
+						fmt.Println(fahr, "°F")
+					} else if kelvin != 0 {
+						fahr = (kelvin*9/5 - 459.67)
+						fmt.Println(fahr, "°F")
+					} else {
+						fmt.Println(fahr, "°F")
+					}
+				case "K":
+					if fahr != 0 {
+						kelvin = (fahr + 459.67) * 5 / 9
+						fmt.Println(kelvin, "K")
+					} else if celsius != 0 {
+						kelvin = celsius + 273.15
+						fmt.Println(kelvin, "K")
+					} else {
+						fmt.Println(kelvin, "K")
+					}
+				default:
+					fmt.Println("Invalid temperature scale")
+				}
+			}
+			

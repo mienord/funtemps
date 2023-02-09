@@ -25,6 +25,14 @@ type FunFacts struct {
 	Terra []string
 }
 
+//tror ikke vi skal ha denne - en for loop som printer ut alle funfactsa etter hverandre
+func main() {
+	funFacts := GetFunFacts("sun")
+	for i, fact := range funFacts {
+		fmt.Println(i+1, fact)
+	}
+}
+
 // GetFunFacts returns a slice of fun facts about the Sun, Moon, or Earth.
 func GetFunFacts(about string) []string {
 	var funFacts FunFacts
@@ -59,10 +67,3 @@ func GetFunFacts(about string) []string {
 	}
 }
 
-//tror ikke vi skal ha denne - en for loop som printer ut alle funfactsa etter hverandre
-func main() {
-	funFacts := GetFunFacts("sun")
-	for i, fact := range funFacts {
-		fmt.Println(i+1, fact)
-	}
-}

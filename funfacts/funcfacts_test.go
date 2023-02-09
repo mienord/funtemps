@@ -32,3 +32,17 @@ func TestGetFunFacts(t *testing.T) {
 		}
 	}
 }
+
+//bruker en switch statement til å matche input verdien med enten sun, terra, luna - også returnerer
+func GoGetFunFacts(input string) []string {
+	switch input {
+	case "sun":
+		return []string {"Temperaturen i Solens kjerne er: ", "Temperaturen på det ytre laget laget av Solen er: ",}
+	case "terra":
+		return []string {"Høyeste temperatur målt på Jordens overflate er: ", "Laveste temperatur målt på Jordens overflate er: ", "Temperaturen i Jordens indre kjerne er: ",}
+	case "luna":
+		return []string {"Temperaturen på Månens overflate om natten er: ", "Temperaturen på Månens overflate om dagen er: "}
+	default:
+		return []string{}
+	}
+}
