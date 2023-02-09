@@ -26,7 +26,7 @@ type FunFacts struct {
 }
 
 //tror ikke vi skal ha denne - en for loop som printer ut alle funfactsa etter hverandre
-func main() {
+func funfacts() {
 	funFacts := GetFunFacts("sun")
 	for i, fact := range funFacts {
 		fmt.Println(i+1, fact)
@@ -52,6 +52,14 @@ func GetFunFacts(about string) []string {
 		"Laveste temperatur målt på Jordens overflate er: ",
 		"Temperaturen i Jordens indre kjerne er: ",
 	}
+
+  fmt.Println(funFacts.Sun[0])
+	fmt.Println(funFacts.Sun[1])
+	fmt.Println(funFacts.Luna[0])
+  fmt.Println(funFacts.Luna[1])
+	fmt.Println(funFacts.Terra[0])
+  fmt.Println(funFacts.Terra[1])
+  fmt.Println(funFacts.Terra[2])
 
 	//denne koden bruker en switch statement for å bestemme hvilken funfact som skal returneres basert på verdien til about 
 	switch about {
