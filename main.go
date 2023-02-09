@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	fun "github.com/mienord/funtemps/funfacts" 
+	fun "github.com/mienord/funtemps/funfacts"
+	con "github.com/mienord/funtemps/conv" 
 	
 )
 
@@ -49,37 +50,37 @@ func main() {
 	}
 	
 
-	// Check the out flag and convert temperature
+	// Check the out flag and convert temperature - "%.2f %s\n" sørger for at det kun printer 2 desimaler i output
 	switch out {
 	case "C":
 		if fahr != 0 {
 			celsius = (fahr - 32) * 5 / 9
-			fmt.Println(celsius, "°C")
+			fmt.Printf("%.2f %s\n", celsius, "°C")
 		} else if kelvin != 0 {
 			celsius = kelvin - 273.15
-			fmt.Println(celsius, "°C")
+			fmt.Printf("%.2f %s\n", celsius, "°C")
 		} else {
-			fmt.Println(celsius, "°C")
+			fmt.Printf("%.2f %s\n", celsius, "°C")
 		}
 	case "F":
 		if celsius != 0 {
 			fahr = (celsius * 9 / 5) + 32
-			fmt.Println(fahr, "°F")
+			fmt.Printf("%.2f %s\n", fahr, "°F")
 		} else if kelvin != 0 {
 			fahr = (kelvin*9/5 - 459.67)
-			fmt.Println(fahr, "°F")
+			fmt.Printf("%.2f %s\n", fahr, "°F")
 		} else {
-			fmt.Println(fahr, "°F")
+			fmt.Printf("%.2f %s\n", fahr, "°F")
 		}
 	case "K":
 		if fahr != 0 {
 			kelvin = (fahr + 459.67) * 5 / 9
-			fmt.Println(kelvin, "K")
+			fmt.Printf("%.2f %s\n", kelvin, "K")
 		} else if celsius != 0 {
 			kelvin = celsius + 273.15
-			fmt.Println(kelvin, "K")
+			fmt.Printf("%.2f %s\n", kelvin, "K")
 		} else {
-			fmt.Println(kelvin, "K")
+			fmt.Printf("%.2f %s\n", kelvin, "K")
 		}
 	default:
 		fmt.Println("Invalid temperature scale: Enter a valid temperature unit (C, F or K)")
@@ -92,6 +93,19 @@ func  funGetFunFacts(about string) {
 	for i, fact := range funFacts {
 		fmt.Println(i+1, fact)
 	}
+}
+
+//usikker på om denne er nødvendig
+func conv() {
+	var temp float64
+	fmt.Print("Enter the temperature in Celsius: ")
+	fmt.Scanf("%f", &temp)
+
+	kelvin := con.CelsiusToKelvin(temp)
+	fahrenheit := con.CelsiusToFahrenheit(temp)
+
+	fmt.Println("Temperature in Kelvin: ", kelvin)
+	fmt.Println("Temperature in Farhenheit: ", fahrenheit)
 }
 
 
