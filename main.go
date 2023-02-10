@@ -38,13 +38,13 @@ func main() {
 	}
 
 	// Check if temperature flags and funfact flag are used together
-	if (fahr != 0 || celsius != 0 || kelvin != 0) && funfact != "sun" {
+	if (fahr != 0 || celsius != 0 || kelvin != 0) && funfact != "about" {
 		fmt.Println("Error: Cannot use temperature flags with funfact flag.")
 		return
 	}
 
 	// Check if funfact flag is used with temperature scale flag
-	if funfact != "sun" && tempSkala == "C" {
+	if funfact != "about" && tempSkala == "C" {
 		fmt.Println("Error: Must use temperature scale flag with funfact flag.")
 		return
 	}
@@ -85,10 +85,29 @@ func main() {
 	default:
 		fmt.Println("Invalid temperature scale: Enter a valid temperature unit (C, F or K)")
 	}
-			
+		
 }
-			
-func  funGetFunFacts(about string) {
+
+func FunFacts() {
+	var funfact bool
+	var tempSkala string
+
+	flag.BoolVar(&funfact, "funfact", false, "Print fun facts")
+	flag.StringVar(&tempSkala, "t", "", "Temperature scale (C)")
+	flag.Parse()
+
+	if funfact {
+		if tempSkala == "" {
+			fmt.Println("Error: Must use -t flag with --funfact flag.")
+			return
+		if tempSkala == "t" {
+			fun.GetFunFacts("sun") 
+		}
+	}
+}
+}
+
+func  GetFunFacts(about string) {
 	funFacts := fun.GetFunFacts(about)
 	for i, fact := range funFacts {
 		fmt.Println(i+1, fact)
