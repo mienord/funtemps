@@ -7,7 +7,6 @@ import (
 
 /*
 *
-
 	Mal for testfunksjoner
 	Du skal skrive alle funksjonene basert på denne malen
 	For alle konverteringsfunksjonene (tilsammen 6)
@@ -128,4 +127,3 @@ func TestKelvinToFahrenheit(t *testing.T) {
 		}
 }
 }
-

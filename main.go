@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	fun "github.com/mienord/funtemps/funfacts"
-	con "github.com/mienord/funtemps/conv" 
+	//fun "github.com/mienord/funtemps/funfacts"
+	//con "github.com/mienord/funtemps/conv" 
 	
 )
 
@@ -38,19 +38,18 @@ func main() {
 	}
 
 	// Check if temperature flags and funfact flag are used together
-	if (fahr != 0 || celsius != 0 || kelvin != 0) && funfact != "about" {
+	if (fahr != 0 || celsius != 0 || kelvin != 0) && funfact != "sun" {
 		fmt.Println("Error: Cannot use temperature flags with funfact flag.")
 		return
 	}
 
 	// Check if funfact flag is used with temperature scale flag
-	if funfact != "about" && tempSkala == "C" {
+	if funfact != "sun" && tempSkala == "C" {
 		fmt.Println("Error: Must use temperature scale flag with funfact flag.")
 		return
 	}
 	
-
-	// Check the out flag and convert temperature - "%.2f %s\n" sørger for at det kun printer 2 desimaler i output
+// Check the out flag and convert temperature - "%.2f %s\n" sørger for at det kun printer 2 desimaler i output
 	switch out {
 	case "C":
 		if fahr != 0 {
@@ -85,46 +84,15 @@ func main() {
 	default:
 		fmt.Println("Invalid temperature scale: Enter a valid temperature unit (C, F or K)")
 	}
-		
+	
 }
+	
 
-func FunFacts() {
-	var funfact bool
-	var tempSkala string
-
-	flag.BoolVar(&funfact, "funfact", false, "Print fun facts")
-	flag.StringVar(&tempSkala, "t", "", "Temperature scale (C)")
-	flag.Parse()
-
-	if funfact {
-		if tempSkala == "" {
-			fmt.Println("Error: Must use -t flag with --funfact flag.")
-			return
-		if tempSkala == "t" {
-			fun.GetFunFacts("sun") 
-		}
-	}
-}
-}
-
+/*
 func  GetFunFacts(about string) {
 	funFacts := fun.GetFunFacts(about)
 	for i, fact := range funFacts {
 		fmt.Println(i+1, fact)
 	}
 }
-
-//usikker på om denne er nødvendig
-func conv() {
-	var temp float64
-	fmt.Print("Enter the temperature in Celsius: ")
-	fmt.Scanf("%f", &temp)
-
-	kelvin := con.CelsiusToKelvin(temp)
-	fahrenheit := con.CelsiusToFahrenheit(temp)
-
-	fmt.Println("Temperature in Kelvin: ", kelvin)
-	fmt.Println("Temperature in Farhenheit: ", fahrenheit)
-}
-
-
+*/
