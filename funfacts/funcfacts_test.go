@@ -25,7 +25,6 @@ func TestGetFunFacts(t *testing.T) {
 	  {input: "luna", want: []string {"Temperaturen på Månens overflate om natten er: ", "Temperaturen på Månens overflate om dagen er: "}},
 	}
 
-	
 	for _, tc := range tests {
 		got := GetFunFacts(tc.input)
 		if !reflect.DeepEqual(tc.want, got) {

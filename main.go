@@ -3,9 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	//fun "github.com/mienord/funtemps/funfacts"
-	//con "github.com/mienord/funtemps/conv" 
-	
+	"github.com/mienord/funtemps/funfacts"
 )
 
 var (
@@ -48,43 +46,42 @@ func main() {
 		fmt.Println("Error: Must use temperature scale flag with funfact flag.")
 		return
 	}
-	
-// Check the out flag and convert temperature - "%.2f %s\n" sørger for at det kun printer 2 desimaler i output
+
+	// Check the out flag and convert temperature
 	switch out {
 	case "C":
 		if fahr != 0 {
 			celsius = (fahr - 32) * 5 / 9
-			fmt.Printf("%.2f %s\n", celsius, "°C")
+			fmt.Println(celsius, "°C")
 		} else if kelvin != 0 {
 			celsius = kelvin - 273.15
-			fmt.Printf("%.2f %s\n", celsius, "°C")
+			fmt.Println(celsius, "°C")
 		} else {
-			fmt.Printf("%.2f %s\n", celsius, "°C")
+			fmt.Println(celsius, "°C")
 		}
 	case "F":
 		if celsius != 0 {
 			fahr = (celsius * 9 / 5) + 32
-			fmt.Printf("%.2f %s\n", fahr, "°F")
+			fmt.Println(fahr, "°F")
 		} else if kelvin != 0 {
 			fahr = (kelvin*9/5 - 459.67)
-			fmt.Printf("%.2f %s\n", fahr, "°F")
+			fmt.Println(fahr, "°F")
 		} else {
-			fmt.Printf("%.2f %s\n", fahr, "°F")
+			fmt.Println(fahr, "°F")
 		}
 	case "K":
 		if fahr != 0 {
 			kelvin = (fahr + 459.67) * 5 / 9
-			fmt.Printf("%.2f %s\n", kelvin, "K")
+			fmt.Println(kelvin, "K")
 		} else if celsius != 0 {
 			kelvin = celsius + 273.15
-			fmt.Printf("%.2f %s\n", kelvin, "K")
+			fmt.Println(kelvin, "K")
 		} else {
-			fmt.Printf("%.2f %s\n", kelvin, "K")
+			fmt.Println(kelvin, "K")
 		}
 	default:
 		fmt.Println("Invalid temperature scale: Enter a valid temperature unit (C, F or K)")
 	}
-<<<<<<< HEAD
 
 
 				// Tests that makes sure these combinations are fulfilled:
@@ -153,17 +150,3 @@ func main() {
 					fmt.Println("Invalid temperature scale")
 				}
 			}
-=======
-	
-}
-	
-
-/*
-func  GetFunFacts(about string) {
-	funFacts := fun.GetFunFacts(about)
-	for i, fact := range funFacts {
-		fmt.Println(i+1, fact)
-	}
-}
-*/
->>>>>>> 199a9f219045ea0cb77e55546cb82f5b36854e4c
