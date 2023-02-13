@@ -15,23 +15,21 @@ package funfacts
 */
 
 
-import (
-	"fmt"
-)
-
 type FunFacts struct {
 	Sun   []string
 	Luna  []string
 	Terra []string
 }
 
+/*
 //tror ikke vi skal ha denne - en for loop som printer ut alle funfactsa etter hverandre
-func main() {
+func funfacts() {
 	funFacts := GetFunFacts("sun")
 	for i, fact := range funFacts {
 		fmt.Println(i+1, fact)
 	}
 }
+*/
 
 // GetFunFacts returns a slice of fun facts about the Sun, Moon, or Earth.
 func GetFunFacts(about string) []string {
@@ -52,6 +50,7 @@ func GetFunFacts(about string) []string {
 		"Laveste temperatur målt på Jordens overflate er: ",
 		"Temperaturen i Jordens indre kjerne er: ",
 	}
+
 
 	//denne koden bruker en switch statement for å bestemme hvilken funfact som skal returneres basert på verdien til about 
 	switch about {
