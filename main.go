@@ -82,8 +82,8 @@ func main() {
 	default:
 		fmt.Println("Invalid temperature scale: Enter a valid temperature unit (C, F or K)")
 	}
-		
-			
+
+
 				// Tests that makes sure these combinations are fulfilled:
 				// -F, -C, -K can not be used similtaniously
 				if (fahr != 0) && (celsius != 0 || kelvin != 0) {
@@ -98,22 +98,22 @@ func main() {
 					fmt.Println("Error: Cannot use -K flag with -F or -C flags.")
 					return
 				}
-			
+
 				// -F, -C, -K can be used with -out but not with -funfacts
 				if (fahr != 0 || celsius != 0 || kelvin != 0) && funfacts != "sun" {
 					fmt.Println("Error: Cannot use -F, -C, or -K flags with -funfacts flag.")
 					return
 				}
-			
+
 				// funfacts can only be used with -t
 				if (funfacts != "sun") && tempSkala == "C" {
 					fmt.Println("Error: Must use -t flag with -funfacts flag.")
 					return
 				}
-			
+
 				fmt.Println("len(flag.Args())", len(flag.Args()))
 				fmt.Println("flag.NFlag()", flag.NFlag())
-			
+
 				// Check the out flag and convert temperature
 				switch out {
 				case "C":
@@ -150,4 +150,3 @@ func main() {
 					fmt.Println("Invalid temperature scale")
 				}
 			}
-			

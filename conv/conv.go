@@ -11,12 +11,12 @@ package conv
 
 
 
-// Konverterer Celcius til Kelvin 
+// Konverterer Celcius til Kelvin
 func CelsiusToKelvin(value float64) float64 {
   return value + 273.15
 }
 
-// Konverterer Kelvin til Celcius 
+// Konverterer Kelvin til Celcius
 func KelvinToCelsius(value float64) float64 {
   return value - 273.15
 }
@@ -31,7 +31,7 @@ func FahrenheitToCelsius(value float64) float64 {
   return (value - 32)*5/9
 }
 
-// Konverterer Farhenheit til Kelvin 
+// Konverterer Farhenheit til Kelvin
 func FahrenheitToKelvin(value float64) float64 {
   return (value - 32)*5/9 + 273.15
 }
@@ -40,6 +40,3 @@ func FahrenheitToKelvin(value float64) float64 {
 func KelvinToFahrenheit(value float64) float64 {
   return (value - 273.15)*9/5 + 32
 }
-
-
-
